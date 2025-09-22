@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tourism Guide</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f9ff;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    header {
+      background: #0077b6;
+      color: white;
+      padding: 20px;
+    }
+    h1 {
+      margin: 0;
+    }
+    select, button {
+      padding: 10px;
+      margin: 15px;
+      font-size: 16px;
+    }
+    .places {
+      margin-top: 20px;
+    }
+    .card {
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 15px;
+      margin: 10px auto;
+      width: 300px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .card h3 {
+      margin: 0;
+      color: #0077b6;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🌍 Tourism Guide App</h1>
+    <p>Discover top attractions in popular cities</p>
+  </header>
+
+  <main>
+    <label for="city">Choose a City:</label>
+    <select id="city">
+      <option value="">--Select--</option>
+      <option value="delhi">Delhi</option>
+      <option value="paris">Paris</option>
+      <option value="newyork">New York</option>
+      <option value="tokyo">Tokyo</option>
+    </select>
+    <button onclick="showPlaces()">Show Attractions</button>
+
+    <div class="places" id="places"></div>
+  </main>
+
+  <script>
+    const data = {
+      delhi: [
+        { name: "Red Fort", desc: "Historic fort in Old Delhi" },
+        { name: "India Gate", desc: "War memorial and picnic spot" },
+        { name: "Qutub Minar", desc: "World’s tallest brick minaret" }
+      ],
+      paris: [
+        { name: "Eiffel Tower", desc: "Iconic tower with city views" },
+        { name: "Louvre Museum", desc: "World’s largest art museum" },
+        { name: "Notre-Dame", desc: "Famous Gothic cathedral" }
+      ],
+      newyork: [
+        { name: "Statue of Liberty", desc: "Symbol of freedom" },
+        { name: "Central Park", desc: "Urban park in Manhattan" },
+        { name: "Times Square", desc: "Bright billboards & nightlife" }
+      ],
+      tokyo: [
+        { name: "Tokyo Tower", desc: "Observation & communication tower" },
+        { name: "Shibuya Crossing", desc: "World’s busiest crossing" },
+        { name: "Senso-ji Temple", desc: "Oldest temple in Tokyo" }
+      ]
+    };
+
+    function showPlaces() {
+      const city = document.getElementById("city").value;
+      const placesDiv = document.getElementById("places");
+      placesDiv.innerHTML = "";
+
+      if (!city) {
+        placesDiv.innerHTML = "<p>Please select a city.</p>";
+        return;
+      }
+
+      data[city].forEach(place => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.innerHTML = `<h3>${place.name}</h3><p>${place.desc}</p>`;
+        placesDiv.appendChild(card);
+      });
+    }
+  </script>
+</body>
+</html>
